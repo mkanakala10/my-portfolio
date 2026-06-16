@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Manas Kanakala — Software Engineer. I build scalable systems, AI pipelines, and full-stack products."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Manas Kanakala — Software Engineer</title>
+    <script>
+      try {
+        const id = localStorage.getItem('portfolio-theme') || 'cream';
+        const themes = {
+          cream: ['#f7f4ef','#ede8df','#2d2a26','#5c574f','#8a847a','#c45d3e','#6b8f71','#e8d5ce','#d4e4e0','#e8d5ce','#d4e4e0','#f0e6d8','#ffffff'],
+          ocean: ['#f0f7fa','#e1eff5','#1b2d3a','#3d5a6c','#6b8796','#2a6f97','#4895a8','#c8e3ef','#a8d5e8','#c8e3ef','#a8d5e8','#dceef5','#f8fcfe'],
+          lavender: ['#f7f4fb','#ede8f5','#2a2438','#534d66','#857d96','#7c5cbf','#9b8ec4','#e4d9f5','#d4c8ef','#e4d9f5','#d4c8ef','#f0ebfa','#fdfcff'],
+          forest: ['#f4f7f4','#e6ede8','#1e2b24','#3f5247','#6b7f72','#3d6b4f','#5a8f6e','#d0e4d4','#b8d4c0','#d0e4d4','#b8d4c0','#e8f2ea','#fafffb'],
+          sunset: ['#fdf6f0','#f5e8dc','#2e2218','#5c4a3a','#8a7562','#d4622a','#c4925a','#f5d4bc','#f0c9a8','#f5d4bc','#f0c9a8','#faead8','#fffaf6'],
+          rose: ['#faf4f5','#f2e6e9','#2e2226','#5c4a50','#8a7278','#b85c72','#c98a96','#f0d4da','#e8c0ca','#f0d4da','#e8c0ca','#f8eaed','#fffbfc'],
+          slate: ['#f4f6f8','#e8ecf0','#1c242e','#44515e','#6f7b88','#4a6278','#6b8498','#d4dde6','#c0cdd8','#d4dde6','#c0cdd8','#ecf0f4','#fafbfc'],
+          golden: ['#faf7f0','#f0e9d8','#2a2618','#524a38','#847a62','#a67c2e','#8f9a5a','#ede0c0','#e0d4a8','#ede0c0','#e0d4a8','#f5f0e4','#fffdf8'],
+        };
+        const t = themes[id] || themes.cream;
+        const r = document.documentElement;
+        const k = ['--color-cream','--color-cream-deep','--color-ink','--color-ink-muted','--color-ink-faint','--color-copper','--color-sage','--color-blush','--color-mist','--mesh-1','--mesh-2','--mesh-3','--color-surface'];
+        k.forEach((key, i) => r.style.setProperty(key, t[i]));
+        r.dataset.theme = id;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
