@@ -48,8 +48,7 @@ export function Navigation() {
           href="#"
           className="font-display text-xl font-semibold tracking-tight text-ink transition-opacity hover:opacity-70"
         >
-          {personal.name.split(' ')[0]}
-          <span className="text-copper">.</span>
+          MK<span className="text-copper">K</span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
