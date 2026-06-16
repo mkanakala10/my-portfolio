@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -32,10 +32,14 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          NODE_ENV: production
 
-      - name: Upload artifact
+      - name: Verify build output
+        run: |
+          test -f dist/index.html
+          grep -q '/my-portfolio/assets/' dist/index.html
+          ! grep -q '/src/main.tsx' dist/index.html
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
