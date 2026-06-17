@@ -6,24 +6,34 @@ import { useTitleUnderline } from '../hooks/useScrollReveal'
 function ProjectCard({
   project,
   delay,
-  featured = false,
+  variant = 'default',
 }: {
   project: (typeof projects)[number]
   delay: number
-  featured?: boolean
+  variant?: 'featured' | 'default' | 'minor'
 }) {
+  const isFeatured = variant === 'featured'
+  const isMinor = variant === 'minor'
+
   return (
     <ScrollReveal delay={delay} variant="scale">
       <article
-        className={`project-card rounded-3xl border border-ink/8 bg-white/50 backdrop-blur-sm ${
-          featured ? 'p-10 md:p-12' : 'p-10'
+        className={`project-card border border-ink/8 bg-white/50 backdrop-blur-sm ${
+          isFeatured
+            ? 'rounded-3xl p-10 md:p-12'
+            : isMinor
+              ? 'rounded-2xl p-6 md:max-w-sm'
+              : 'rounded-3xl p-10'
         }`}
         style={{ '--accent': project.accent } as React.CSSProperties}
       >
-        <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div
-            className="inline-block h-1 rounded-full"
-            style={{ background: project.accent, width: featured ? '4rem' : '3rem' }}
+            className="inline-block h-0.5 rounded-full"
+            style={{
+              background: project.accent,
+              width: isFeatured ? '4rem' : isMinor ? '2rem' : '3rem',
+            }}
           />
           {(project.liveUrl || project.githubUrl) && (
             <div className="flex flex-wrap gap-3">
@@ -51,18 +61,26 @@ function ProjectCard({
           )}
         </div>
 
-        <time className="mt-6 block font-mono text-xs text-ink-faint">{project.period}</time>
+        <time
+          className={`block font-mono text-ink-faint ${isMinor ? 'mt-4 text-[10px]' : 'mt-6 text-xs'}`}
+        >
+          {project.period}
+        </time>
         <h3
-          className={`mt-3 font-display font-medium text-ink ${
-            featured ? 'text-3xl md:text-4xl' : 'text-2xl md:text-3xl'
+          className={`mt-2 font-display font-medium text-ink ${
+            isFeatured ? 'text-3xl md:text-4xl' : isMinor ? 'text-xl' : 'text-2xl md:text-3xl'
           }`}
         >
           {project.title}
         </h3>
-        <p className={`mt-4 leading-relaxed text-ink-muted ${featured ? 'max-w-3xl text-lg' : ''}`}>
+        <p
+          className={`mt-3 leading-relaxed text-ink-muted ${
+            isFeatured ? 'max-w-3xl text-lg' : isMinor ? 'text-sm' : ''
+          }`}
+        >
           {project.description}
         </p>
-        <div className="mt-8 flex flex-wrap gap-2">
+        <div className={`flex flex-wrap gap-2 ${isMinor ? 'mt-4' : 'mt-8'}`}>
           {project.tech.map((t) => (
             <span
               key={t}
@@ -102,7 +120,7 @@ export function Projects() {
         </ScrollReveal>
 
         <div className="mt-16 space-y-8">
-          {featured && <ProjectCard project={featured} delay={0} featured />}
+          {featured && <ProjectCard project={featured} delay={0} variant="featured" />}
 
           <div className="stagger-children grid gap-8 md:grid-cols-2">
             {rest.map((project, i) => (
@@ -111,33 +129,16 @@ export function Projects() {
           </div>
 
           {minor.length > 0 && (
-            <ScrollReveal delay={300}>
-              <div className="border-t border-ink/8 pt-8">
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-faint">
-                  Also
-                </p>
-                <ul className="mt-4 space-y-3">
-                  {minor.map((project) => (
-                    <li key={project.title}>
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex flex-wrap items-baseline justify-between gap-2 rounded-xl px-3 py-2 transition-colors hover:bg-ink/4"
-                      >
-                        <span className="text-sm text-ink-muted transition-colors group-hover:text-ink">
-                          {project.title}
-                          <span className="text-ink-faint"> · {project.period}</span>
-                        </span>
-                        <span className="font-mono text-[11px] text-ink-faint transition-colors group-hover:text-copper">
-                          View →
-                        </span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
+            <div className="flex flex-wrap gap-6 border-t border-ink/8 pt-8">
+              {minor.map((project, i) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  delay={300 + i * 100}
+                  variant="minor"
+                />
+              ))}
+            </div>
           )}
         </div>
       </div>
