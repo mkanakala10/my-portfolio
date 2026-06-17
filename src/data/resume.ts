@@ -33,13 +33,15 @@ export const experience = [
     company: 'Unique Minds',
     role: 'AI Engineering Intern',
     location: 'Redmond, WA',
-    period: 'Jun 2025 – Aug 2025',
-    tech: ['TypeScript', 'React', 'Firebase', 'Tailwind CSS', 'Gemini API', 'Angular'],
+    period: 'Jun 2025 – Present',
+    tech: ['TypeScript', 'React', 'Firebase', 'Firestore', 'Cloud Functions', 'Gemini API', 'Angular', 'Tailwind CSS'],
     highlights: [
-      'Architected modular component systems with shadcn/ui for instant renders and high reusability.',
-      'Built event-driven Cloud Functions backend that automated AI content generation — 90% less manual work.',
-      'Engineered real-time Firestore sync with React Context for collaborative, session-aware UX.',
-      'Optimized Gemini pipelines via batching, parallel processing, and caching — 60% faster responses.',
+      'Built real-time AI character choreography during chat, syncing pose and timing data from Gemini into animated playback across 3 product surfaces serving 3K+ app downloads.',
+      'Developed a reusable multi-character animation framework (scroll, script, and manual modes) powering daily digests, clinician demos, and marketing pages — eliminating per-app animation rebuilds.',
+      'Shipped end-to-end viral character sharing: AI-guided onboarding, ambassador/adoption APIs, and public adopt flows with pose-animated intro scripts.',
+      'Built a visual script editor and playback stack with pose timelines, character mentions, and markdown tooling — cutting manual script authoring time ~90%.',
+      'Designed multi-day narrative AI jobs as Cloud Functions, including a 7-day branching space mission with Gemini image generation and daily scripted transmissions.',
+      'Automated AI content generation with event-driven Cloud Functions and Firestore triggers; cut Gemini response latency ~60% via retries, parallelization, and caching.',
     ],
   },
   {
@@ -97,6 +99,16 @@ export const projects = [
       'I trained ensemble models on 2,000+ games — boosting tournament matchup accuracy from 60.9% to 79.4% through feature engineering and model selection.',
     accent: '#C45D3E',
     githubUrl: 'https://github.com/mkanakala10/Predicting-March-Madness-Outcomes',
+  },
+  {
+    title: 'The Emerald City Guide',
+    period: 'Fall 2025',
+    tech: ['React'],
+    description:
+      'A course project — a React site for exploring Seattle neighborhoods, parks, and landmarks.',
+    accent: '#4a6278',
+    minor: true,
+    liveUrl: 'https://cs571-f25.github.io/Guide-to-Seattle/',
   },
 ]
 

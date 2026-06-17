@@ -82,7 +82,8 @@ export function Projects() {
   useTitleUnderline(underlineRef)
 
   const featured = projects.find((p) => p.featured)
-  const rest = projects.filter((p) => !p.featured)
+  const rest = projects.filter((p) => !p.featured && !p.minor)
+  const minor = projects.filter((p) => p.minor)
 
   return (
     <section id="projects" className="relative px-6 py-32">
@@ -108,6 +109,36 @@ export function Projects() {
               <ProjectCard key={project.title} project={project} delay={(i + 1) * 150} />
             ))}
           </div>
+
+          {minor.length > 0 && (
+            <ScrollReveal delay={300}>
+              <div className="border-t border-ink/8 pt-8">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-faint">
+                  Also
+                </p>
+                <ul className="mt-4 space-y-3">
+                  {minor.map((project) => (
+                    <li key={project.title}>
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-wrap items-baseline justify-between gap-2 rounded-xl px-3 py-2 transition-colors hover:bg-ink/4"
+                      >
+                        <span className="text-sm text-ink-muted transition-colors group-hover:text-ink">
+                          {project.title}
+                          <span className="text-ink-faint"> · {project.period}</span>
+                        </span>
+                        <span className="font-mono text-[11px] text-ink-faint transition-colors group-hover:text-copper">
+                          View →
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
+          )}
         </div>
       </div>
     </section>
